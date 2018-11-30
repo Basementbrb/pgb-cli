@@ -10,7 +10,7 @@ const signInUser = () => {
         pgb.api.addAuth(token)
         return { token }
       }
-      return prompt('Password: ', { mask: true })
+      return Promise.resolve(pgb.opts.commands[2] || prompt('Password: ', { mask: true }))
         .then(response => {
           password = response
           pgb.api.addAuth(username, password)
